@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Cookie } from 'ng2-cookies';
 
 @Component({
   selector: 'app-register-supplier',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterSupplierComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    if (Cookie.get('anvyl_token'))
+      this.router.navigate(['dashboard']);
   }
-
 }
