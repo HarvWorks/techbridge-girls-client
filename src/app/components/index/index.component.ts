@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { Cookie } from 'ng2-cookies';
 
+import { SessionService } from '../../services/session.service';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -11,12 +13,15 @@ import { Cookie } from 'ng2-cookies';
 export class IndexComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private session: SessionService
   ) { }
 
   ngOnInit() {
-    if (Cookie.get('anvyl_token'))
-      this.router.navigate(['dashboard']);
+    if (this.session.type === 0)
+      this.router.navigate(['maker/dashboard']);
+    else if (this.session.type === 1)
+      this.router.navigate(['supplier/dashboard']);
   }
 
 }

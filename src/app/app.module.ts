@@ -7,15 +7,21 @@ import { AppRoutingModule } from './modules/app-routing.module';
 import { AuthModule } from './modules/auth.module';
 
 import { AppComponent } from './components/app/app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HeaderComponent } from './components/header/header.component';
 import { IndexComponent } from './components/index/index.component';
-import { LoginComponent } from './components/login/login.component';
-import { MessagesComponent } from './components/messages/messages.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ProgressComponent } from './components/progress/progress.component';
-import { RegisterMakerComponent } from './components/register-maker/register-maker.component';
-import { RegisterSupplierComponent } from './components/register-supplier/register-supplier.component';
+import { MakerDashboardComponent } from './components/maker-dashboard/maker-dashboard.component';
+import { MakerHeaderComponent } from './components/maker-header/maker-header.component';
+import { MakerLoginComponent } from './components/maker-login/maker-login.component';
+import { MakerMessagesComponent } from './components/maker-messages/maker-messages.component';
+import { MakerProfileComponent } from './components/maker-profile/maker-profile.component';
+import { MakerProgressComponent } from './components/maker-progress/maker-progress.component';
+import { MakerRegisterComponent } from './components/maker-register/maker-register.component';
+import { SupplierDashboardComponent } from './components/supplier-dashboard/supplier-dashboard.component';
+import { SupplierHeaderComponent } from './components/supplier-header/supplier-header.component';
+import { SupplierLoginComponent } from './components/supplier-login/supplier-login.component';
+import { SupplierMessagesComponent } from './components/supplier-messages/supplier-messages.component';
+import { SupplierProfileComponent } from './components/supplier-profile/supplier-profile.component';
+import { SupplierProgressComponent } from './components/supplier-progress/supplier-progress.component';
+import { SupplierRegisterComponent } from './components/supplier-register/supplier-register.component';
 
 import { HttpService } from './services/http.service';
 import { UsersService } from './services/users.service';
@@ -25,15 +31,21 @@ import { SocketService } from './services/socket.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    HeaderComponent,
     IndexComponent,
-    LoginComponent,
-    MessagesComponent,
-    ProfileComponent,
-    ProgressComponent,
-    RegisterSupplierComponent,
-    RegisterMakerComponent,
+    MakerDashboardComponent,
+    MakerHeaderComponent,
+    MakerLoginComponent,
+    MakerMessagesComponent,
+    MakerProfileComponent,
+    MakerProgressComponent,
+    MakerRegisterComponent,
+    SupplierDashboardComponent,
+    SupplierHeaderComponent,
+    SupplierLoginComponent,
+    SupplierMessagesComponent,
+    SupplierProfileComponent,
+    SupplierProgressComponent,
+    SupplierRegisterComponent
   ],
   imports: [
     AppRoutingModule,

@@ -14,8 +14,12 @@ export class UsersService {
 		return this.http.post(false, '/users/login', data);
 	}
 
+	register(data: any): Promise<any> {
+		return this.http.post(false, '/users/register', data);
+	}
+
 	show(id: string): Promise<any> {
-		return this.http.get(false, `/api/users/${id}`)
+		return this.http.get(true, `/api/users/${id}`)
 	}
 
 }
