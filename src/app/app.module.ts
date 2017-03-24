@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './modules/app-routing.module';
+import { AuthModule } from './modules/auth.module';
 
 import { AppComponent } from './components/app/app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -16,6 +17,7 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { RegisterMakerComponent } from './components/register-maker/register-maker.component';
 import { RegisterSupplierComponent } from './components/register-supplier/register-supplier.component';
 
+import { HttpService } from './services/http.service';
 import { UsersService } from './services/users.service';
 import { SessionService } from './services/session.service';
 import { SocketService } from './services/socket.service';
@@ -35,11 +37,12 @@ import { SocketService } from './services/socket.service';
   ],
   imports: [
     AppRoutingModule,
+    AuthModule,
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [ UsersService, SessionService, SocketService ],
-  bootstrap: [ AppComponent ]
+  providers: [HttpService, UsersService, SessionService, SocketService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
