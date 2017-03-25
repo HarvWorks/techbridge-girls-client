@@ -38,7 +38,7 @@ export class SupplierRegisterComponent implements OnInit {
     this.suppliersService.register(this.supplier)
       .then(anvyl_token => {
         Cookie.set('anvyl_token', anvyl_token);
-        this.session.setSession(false);
+        this.session.setSession();
         this.router.navigate(['maker/dashboard'])
       })
       .catch(error => {

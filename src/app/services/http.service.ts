@@ -29,6 +29,13 @@ export class HttpService {
     private http: Http
   ) { }
 
+  getIp(): string {
+    return this.ip;
+  }
+
+  //////////////////////////////////////////////////////
+  //               HTTP METHODS
+  //////////////////////////////////////////////////////
   delete(url: string): Promise<any> {
     const http = url.includes('/api/') ? this.authHttp : this.http;
     return http.delete(`${this.ip}${url}`)

@@ -38,7 +38,7 @@ export class MakerRegisterComponent implements OnInit {
     this.makersService.register(this.maker)
       .then(anvyl_token => {
         Cookie.set('anvyl_token', anvyl_token);
-        this.session.setSession(false);
+        this.session.setSession();
         this.router.navigate(['maker/dashboard'])
       })
       .catch(error => {

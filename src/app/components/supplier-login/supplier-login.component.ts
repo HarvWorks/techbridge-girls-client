@@ -38,7 +38,7 @@ export class SupplierLoginComponent implements OnInit {
     this.suppliersService.login(this.supplier)
       .then(anvyl_token => {
         Cookie.set('anvyl_token', anvyl_token);
-        this.session.setSession(false);
+        this.session.setSession();
         this.router.navigate(['supplier/dashboard'])
       })
       .catch(error => {

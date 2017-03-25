@@ -39,7 +39,7 @@ export class SessionService {
     // Navigate to index:
   }
 
-  setSession(isNewUser: boolean): void {
+  setSession(): void {
     try {
       const payload = JSON.parse(window.atob(Cookie.get('anvyl_token').split('.')[1]
         .replace('-', '+').replace('_', '/')));
@@ -51,9 +51,13 @@ export class SessionService {
       this.picture = payload.picture;
       this.created_at = payload.created_at;
 
+
+      //  Connect to sockets:
+      this.socket.connect();
     } catch (error) {
       console.log(error);
       this.logout();
     }
   }
+
 }
