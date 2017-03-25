@@ -24,9 +24,10 @@ import { SupplierProgressComponent } from './components/supplier-progress/suppli
 import { SupplierRegisterComponent } from './components/supplier-register/supplier-register.component';
 
 import { HttpService } from './services/http.service';
-import { UsersService } from './services/users.service';
+import { MakersService } from './services/makers.service';
 import { SessionService } from './services/session.service';
 import { SocketService } from './services/socket.service';
+import { SuppliersService } from './services/suppliers.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { SocketService } from './services/socket.service';
     FormsModule,
     HttpModule
   ],
-  providers: [HttpService, UsersService, SessionService, SocketService],
+  providers: [HttpService, MakersService, SessionService, SocketService, SuppliersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

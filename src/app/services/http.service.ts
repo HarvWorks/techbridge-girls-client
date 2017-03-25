@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class HttpService {
-  private ip = 'http://10.230.194.56:8000';
+  private ip = 'http://10.0.0.44:8000';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   private handleError(error: any): Promise<any> {
@@ -29,32 +29,32 @@ export class HttpService {
     private http: Http
   ) { }
 
-  delete(useAuth: boolean, url: string): Promise<any> {
-    const http = useAuth ? this.authHttp : this.http;
+  delete(url: string): Promise<any> {
+    const http = url.includes('/api/') ? this.authHttp : this.http;
     return http.delete(`${this.ip}${url}`)
       .toPromise()
       .then(response => this.handleResponse(response))
       .catch(error => this.handleError(error));
   }
 
-  get(useAuth: boolean, url: string): Promise<any> {
-    const http = useAuth ? this.authHttp : this.http;
+  get(url: string): Promise<any> {
+    const http = url.includes('/api/') ? this.authHttp : this.http;
     return http.get(`${this.ip}${url}`)
       .toPromise()
       .then(response => this.handleResponse(response))
       .catch(error => this.handleError(error));
   }
 
-  post(useAuth: boolean, url: string, data: any): Promise<any> {
-    const http = useAuth ? this.authHttp : this.http;
+  post(url: string, data: any): Promise<any> {
+    const http = url.includes('/api/') ? this.authHttp : this.http;
     return http.post(`${this.ip}${url}`, JSON.stringify(data), { headers: this.headers })
       .toPromise()
       .then(response => this.handleResponse(response))
       .catch(error => this.handleError(error));
   }
 
-  put(useAuth: boolean, url: string, data: any): Promise<any> {
-    const http = useAuth ? this.authHttp : this.http;
+  put(url: string, data: any): Promise<any> {
+    const http = url.includes('/api/') ? this.authHttp : this.http;
     return http.put(`${this.ip}${url}`, JSON.stringify(data), { headers: this.headers })
       .toPromise()
       .then(response => this.handleResponse(response))

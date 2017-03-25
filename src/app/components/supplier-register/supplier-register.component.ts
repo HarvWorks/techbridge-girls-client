@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Cookie } from 'ng2-cookies';
 
 import { SessionService } from '../../services/session.service';
-import { UsersService } from '../../services/users.service';
+import { SuppliersService } from '../../services/suppliers.service';
 
 @Component({
   selector: 'app-supplier-register',
@@ -14,13 +14,13 @@ import { UsersService } from '../../services/users.service';
 })
 export class SupplierRegisterComponent implements OnInit {
 
-  user = { type: 1 };
+  supplier = { type: 1 };
 
   constructor(
     private location: Location,
     private router: Router,
     private session: SessionService,
-    private usersService: UsersService
+    private suppliersService: SuppliersService
   ) { }
 
   ngOnInit() {
@@ -35,14 +35,14 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.usersService.register(this.user)
+    this.suppliersService.register(this.supplier)
       .then(anvyl_token => {
         Cookie.set('anvyl_token', anvyl_token);
         this.session.setSession(false);
         this.router.navigate(['maker/dashboard'])
       })
       .catch(error => {
-
+        console.log(error)
       })
   }
 

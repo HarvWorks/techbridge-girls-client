@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 import { Cookie } from 'ng2-cookies';
 
+import { MakersService } from '../../services/makers.service';
 import { SessionService } from '../../services/session.service';
-import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-maker-register',
@@ -14,13 +14,13 @@ import { UsersService } from '../../services/users.service';
 })
 export class MakerRegisterComponent implements OnInit {
 
-  user = { type: 0 };
+  maker = { type: 0 };
 
   constructor(
     private location: Location,
+    private makersService: MakersService,
     private router: Router,
-    private session: SessionService,
-    private usersService: UsersService
+    private session: SessionService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class MakerRegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.usersService.register(this.user)
+    this.makersService.register(this.maker)
       .then(anvyl_token => {
         Cookie.set('anvyl_token', anvyl_token);
         this.session.setSession(false);

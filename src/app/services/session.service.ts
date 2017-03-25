@@ -5,11 +5,9 @@ import { Location } from '@angular/common';
 import { Cookie } from 'ng2-cookies';
 
 import { SocketService } from './socket.service';
-import { UsersService } from './users.service';
 
 @Injectable()
 export class SessionService {
-  test: string;
   id: string;
   type: number;
   company: string;
@@ -20,8 +18,7 @@ export class SessionService {
   constructor(
     private location: Location,
     private router: Router,
-    private socket: SocketService,
-    private usersService: UsersService
+    private socket: SocketService
   ) { }
 
   logout(): void {
@@ -43,7 +40,6 @@ export class SessionService {
   }
 
   setSession(isNewUser: boolean): void {
-    this.test = "anvyl_token exists"
     try {
       const payload = JSON.parse(window.atob(Cookie.get('anvyl_token').split('.')[1]
         .replace('-', '+').replace('_', '/')));

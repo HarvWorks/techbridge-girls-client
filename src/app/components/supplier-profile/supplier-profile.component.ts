@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SessionService } from '../../services/session.service';
-import { UsersService } from '../../services/users.service';
+import { SuppliersService } from '../../services/suppliers.service';
 
 @Component({
   selector: 'app-supplier-profile',
@@ -15,14 +15,14 @@ export class SupplierProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private session: SessionService,
-    private usersService: UsersService
+    private suppliersService: SuppliersService
   ) { }
 
   ngOnInit() {
     if (this.session.type !== 1)
       this.router.navigate(['']);
     else {
-      this.usersService.show(this.session.id)
+      this.suppliersService.show(this.session.id)
         .then(user => this.user = user)
         .catch(error => console.log(error));
     }
