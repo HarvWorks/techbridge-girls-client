@@ -1,0 +1,5 @@
+<div [ngSwitch]="session.type">
+  <app-maker-header *ngSwitchCase="0"></app-maker-header>
+  <app-supplier-header *ngSwitchCase="1"></app-supplier-header>
+</div>
+<router-outlet></router-outlet>

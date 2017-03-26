@@ -1,5 +1,11 @@
 <h1>Supplier Login</h1>
 <a (click)="back()">Back</a>
+<nav>
+  <a routerLink="/supplier/dashboard" routerLinkActive="active-link">Dashboard</a>
+  <a routerLink="/supplier/register" routerLinkActive="active-link">Register</a>
+  <a routerLink="/supplier/login" routerLinkActive="active-link">Login</a>
+  <a routerLink="" routerLinkActive="active-link">Login</a>
+</nav>
 <form (ngSubmit)="login()" #loginForm="ngForm">
   <div class="form-group">
     <label for="email">Email</label>
