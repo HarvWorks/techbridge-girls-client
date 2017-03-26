@@ -8,6 +8,8 @@ import { SocketService } from './socket.service';
 
 @Injectable()
 export class SessionService {
+  private onAccepted;
+
   id: string;
   type: number;
   company: string;
@@ -22,8 +24,8 @@ export class SessionService {
   ) { }
 
   logout(): void {
-    // Disconnect from sockets:
-    // this.socket.logout();
+    // Disconnect sockets:
+    this.socket.disconnect();
 
     // Clear user information:
     this.id = null;
@@ -37,13 +39,16 @@ export class SessionService {
     Cookie.deleteAll();
 
     // Navigate to index:
+    this.router.navigate(['']);
   }
 
   setSession(): void {
     try {
+      // Parse paylod from token:
       const payload = JSON.parse(window.atob(Cookie.get('anvyl_token').split('.')[1]
         .replace('-', '+').replace('_', '/')));
 
+      // Set user information:
       this.id = payload.id;
       this.type = payload.type;
       this.company = payload.company;
@@ -51,9 +56,12 @@ export class SessionService {
       this.picture = payload.picture;
       this.created_at = payload.created_at;
 
+      // Set notifications:
+
+      // Load google charts:
 
       //  Connect to sockets:
-      this.socket.connect();
+      this.socket.connect(this.type, this.id);
     } catch (error) {
       console.log(error);
       this.logout();

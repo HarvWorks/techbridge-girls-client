@@ -7,15 +7,14 @@ import { HttpService } from './http.service';
 
 @Injectable()
 export class SocketService {
-  private sent: Observable<any>;
+  private onSent: Observable<any>;
   private socket: SocketIOClient.Socket;
-  private test: Observable<any>;
 
   constructor(
     private http: HttpService
   ) { }
 
-  connect(): void {
+  connect(type: number, id: string): void {
     this.socket = io.connect(this.http.getIp());
     // this.http.get('/api/offers/getAcceptedOffers')
     //   .then(response => {
@@ -28,48 +27,32 @@ export class SocketService {
     //////////////////////////////////////////////////////
     //               SOCKET EVENT HANDLERS
     //////////////////////////////////////////////////////
-    this.sent = new Observable(observer => {
+    this.socket.on('accepted', data => {
+      if (type === 1 && id === data.supplier_id)
+        this.socket.emit('join', [data.proposal_id]);  
+    });
+
+    this.onSent = new Observable(observer => {
       this.socket.on('sent', data => {
         observer.next(data);
       });
     });
+  }
 
-    this.test = new Observable(observer => {
-      this.socket.on('testing', () => {
-        observer.next();
-      });
-    });
-
-    this.socket.emit('test');    
+  disconnect(): void {
+    if (this.socket) {
+      this.socket.emit('disconnect');
+      this.socket.disconnect();
+      this.socket = undefined;
+    }
   }
 
   emit(event: string, data?: any) {
-    console.log('emitting')
     this.socket.emit(event, data);
   }
 
-  // getMessages(): Observable<any> {
-  //   return new Observable(observer => {
-  //     this.socket.on('sent', data => {
-  //       observer.next(data);
-  //     });
-  //   });
-  // }
-
-  getSent(): Observable<any> {
-    return this.sent;
-  }
-
-  getTest(): Observable<any> {
-    return this.test;
-  }
-
-  logout(): void {
-    if (this.socket) {
-      this.socket.emit('logout');
-      this.socket.close();
-      this.socket = undefined;
-    }
+  getOnSent(): Observable<any> {
+    return this.onSent;
   }
 
 }

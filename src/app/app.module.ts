@@ -23,10 +23,13 @@ import { SupplierProfileComponent } from './components/supplier-profile/supplier
 import { SupplierProgressComponent } from './components/supplier-progress/supplier-progress.component';
 import { SupplierRegisterComponent } from './components/supplier-register/supplier-register.component';
 
+import { AuthGuardService } from './services/auth-guard.service';
 import { HttpService } from './services/http.service';
+import { MakerGuardService } from './services/maker-guard.service';
 import { MakersService } from './services/makers.service';
 import { SessionService } from './services/session.service';
 import { SocketService } from './services/socket.service';
+import { SupplierGuardService } from './services/supplier-guard.service';
 import { SuppliersService } from './services/suppliers.service';
 
 @NgModule({
@@ -55,7 +58,8 @@ import { SuppliersService } from './services/suppliers.service';
     FormsModule,
     HttpModule
   ],
-  providers: [HttpService, MakersService, SessionService, SocketService, SuppliersService],
+  providers: [AuthGuardService, HttpService, MakerGuardService, MakersService,
+    SessionService, SocketService, SupplierGuardService, SuppliersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

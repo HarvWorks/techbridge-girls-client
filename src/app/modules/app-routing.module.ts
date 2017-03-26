@@ -15,25 +15,32 @@ import { SupplierProfileComponent } from '../components/supplier-profile/supplie
 import { SupplierProgressComponent } from '../components/supplier-progress/supplier-progress.component';
 import { SupplierRegisterComponent } from '../components/supplier-register/supplier-register.component';
 
+import { AuthGuardService } from '../services/auth-guard.service';
+import { MakerGuardService } from '../services/maker-guard.service';
+import { SupplierGuardService } from '../services/supplier-guard.service';
+
 const routes: Routes = [
+	{ path: 'maker', loadChildren: './maker.module', canLoad: [MakerGuardService] },
+	{ path: 'supplier', loadChildren: './supplier.module', canLoad: [SupplierGuardService] },
 	{ path: 'maker/dashboard', component: MakerDashboardComponent },
-	{ path: 'maker/login',  component: MakerLoginComponent },
-	{ path: 'maker/messages',  component: MakerMessagesComponent },
-	{ path: 'maker/profile',  component: MakerProfileComponent },
-	{ path: 'maker/progress',  component: MakerProgressComponent },
-	{ path: 'maker/register',  component: MakerRegisterComponent },
-	{ path: 'supplier/dashboard', component: SupplierDashboardComponent },
-	{ path: 'supplier/login',  component: SupplierLoginComponent },
-	{ path: 'supplier/messages',  component: SupplierMessagesComponent },
-	{ path: 'supplier/profile',  component: SupplierProfileComponent },
-	{ path: 'supplier/progress',  component: SupplierProgressComponent },
-	{ path: 'supplier/register',  component: SupplierRegisterComponent },
+	{ path: 'maker/login', component: MakerLoginComponent },
+	{ path: 'maker/messages', component: MakerMessagesComponent },
+	{ path: 'maker/profile', component: MakerProfileComponent },
+	{ path: 'maker/progress', component: MakerProgressComponent },
+	{ path: 'maker/register', component: MakerRegisterComponent },
+	{ path: 'supplier/dashboard', component: SupplierDashboardComponent, canActivate: [AuthGuardService] },
+	{ path: 'supplier/dashboard', component: SupplierDashboardComponent, canActivate: [AuthGuardService] },
+	{ path: 'supplier/login', component: SupplierLoginComponent },
+	{ path: 'supplier/messages', component: SupplierMessagesComponent },
+	{ path: 'supplier/profile', component: SupplierProfileComponent },
+	{ path: 'supplier/progress', component: SupplierProgressComponent },
+	{ path: 'supplier/register', component: SupplierRegisterComponent },
 	{ path: '', component: IndexComponent },
 	{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-	imports: [ RouterModule.forRoot(routes) ],
-	exports: [ RouterModule ]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

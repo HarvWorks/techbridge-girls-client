@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SessionService } from '../../services/session.service';
@@ -9,8 +9,9 @@ import { SocketService } from '../../services/socket.service';
   templateUrl: './supplier-messages.component.html',
   styleUrls: ['./supplier-messages.component.css']
 })
-export class SupplierMessagesComponent implements OnInit {
-
+export class SupplierMessagesComponent implements OnInit, OnDestroy {
+  private OnSent;
+  
   constructor(
     private router: Router,
     private session: SessionService,
@@ -21,14 +22,14 @@ export class SupplierMessagesComponent implements OnInit {
     if (this.session.type !== 1)
       this.router.navigate(['']);
     else {
-      this.socket.getTest().subscribe(() => {
-        setTimeout(() => {
-          this.socket.emit('test');
-        }, 2000);
+      this.OnSent = this.socket.getOnSent().subscribe(() => {
+        
       });
     }
   }
 
-
+  ngOnDestroy() {
+    this.OnSent.unsubscribe();
+  }
 
 }
