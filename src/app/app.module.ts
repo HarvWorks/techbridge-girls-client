@@ -6,6 +6,10 @@ import { Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
+import { MakerLoginComponent } from './components/maker-login/maker-login.component';
+import { MakerRegisterComponent } from './components/maker-register/maker-register.component';
+import { SupplierLoginComponent } from './components/supplier-login/supplier-login.component';
+import { SupplierRegisterComponent } from './components/supplier-register/supplier-register.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './modules/auth.module';
@@ -15,7 +19,6 @@ import { SessionService } from './services/session.service';
 import { SocketService } from './services/socket.service';
 import { SuppliersService } from './services/suppliers.service';
 import { HttpService } from './services/http.service';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   imports: [
@@ -29,7 +32,10 @@ import { TestComponent } from './test/test.component';
   declarations: [
     AppComponent,
     IndexComponent,
-    TestComponent,
+    MakerLoginComponent,
+    MakerRegisterComponent,
+    SupplierLoginComponent,
+    SupplierRegisterComponent
   ],
   providers: [
     AuthGuardService,

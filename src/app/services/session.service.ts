@@ -21,7 +21,10 @@ export class SessionService {
     private location: Location,
     private router: Router,
     private socket: SocketService
-  ) { }
+  ) { 
+    console.log('session constructed');
+    
+  }
 
   logout(): void {
     // Disconnect sockets:

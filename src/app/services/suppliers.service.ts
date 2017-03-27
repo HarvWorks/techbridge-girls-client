@@ -10,16 +10,16 @@ export class SuppliersService {
     private http: HttpService
   ) { }
 
-  // login(data: any): Promise<any> {
-  //   return this.http.post('/suppliers/login', data);
-  // }
+  login(data: any): Promise<any> {
+    return this.http.post('/suppliers/login', data);
+  }
 
-  // register(data: any): Promise<any> {
-  //   return this.http.post('/suppliers/register', data);
-  // }
+  register(data: any): Promise<any> {
+    return this.http.post('/suppliers/register', data);
+  }
 
-  // show(id: string): Promise<any> {
-  //   return this.http.get(`/api/suppliers/${id}`);
-  // }
+  show(id: string): Promise<any> {
+    return this.http.get(`/api/suppliers/${id}`);
+  }
 
 }

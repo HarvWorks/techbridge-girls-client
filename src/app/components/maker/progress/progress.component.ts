@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+  selector: 'app-progress',
+  templateUrl: './progress.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class ProgressComponent implements OnInit {
 
   constructor(
     private router: Router,
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    if (this.session.type !== 1)
+      this.router.navigate(['']);
   }
-
 }
