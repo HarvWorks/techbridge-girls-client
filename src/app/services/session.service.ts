@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Cookie } from 'ng2-cookies';
 import { JwtHelper } from 'angular2-jwt';
@@ -20,7 +19,6 @@ export class SessionService {
   private onAccepted;
 
   constructor(
-    private location: Location,
     private router: Router,
     private socket: SocketService
   ) { }

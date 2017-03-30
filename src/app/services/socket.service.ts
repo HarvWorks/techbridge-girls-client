@@ -7,12 +7,16 @@ import { HttpService } from './http.service';
 
 @Injectable()
 export class SocketService {
-  private onSent: Observable<any>;
+  private _onSent: Observable<any>;
   private socket: SocketIOClient.Socket;
 
   constructor(
     private http: HttpService
   ) { }
+
+  get onSent(): Observable<any> {
+    return this._onSent;
+  }
 
   connect(type: number, id: string): void {
     this.socket = io.connect(this.http.ip);
@@ -32,7 +36,7 @@ export class SocketService {
         this.socket.emit('join', [data.proposal_id]);  
     });
 
-    this.onSent = new Observable(observer => {
+    this._onSent = new Observable(observer => {
       this.socket.on('sent', data => {
         observer.next(data);
       });
@@ -49,10 +53,6 @@ export class SocketService {
 
   emit(event: string, data?: any) {
     this.socket.emit(event, data);
-  }
-
-  getOnSent(): Observable<any> {
-    return this.onSent;
   }
 
 }

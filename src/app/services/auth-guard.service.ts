@@ -20,9 +20,6 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
   canActivate(): boolean {
     const anvyl_token = Cookie.get('anvyl_token');
-console.log(anvyl_token);
-
-console.log('in canActivate', this.session.type)
 
     if (anvyl_token && this.jwtHelper.isTokenExpired(anvyl_token)) {
       this.session.logout(false);

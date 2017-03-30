@@ -21,9 +21,7 @@ export class LoginComponent implements OnInit {
     private suppliersService: SuppliersService
   ) { }
 
-  ngOnInit() {
-    console.log('login')
-  }
+  ngOnInit() { }
 
   back(): void {
     this.location.back();
@@ -32,7 +30,6 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.suppliersService.login(this.supplier)
       .then(anvyl_token => {
-        console.log(anvyl_token)
         Cookie.set('anvyl_token', anvyl_token);
         this.session.setSession();
         this.router.navigate(['supplier/dashboard'])
