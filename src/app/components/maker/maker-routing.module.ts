@@ -8,14 +8,12 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { RegisterComponent } from './register/register.component';
-import { MakerComponent } from './maker.component';
 
 import { AuthGuardService } from '../../services/auth-guard.service';
 
 const makerRoutes: Routes = [
   {
     path: '',
-    component: MakerComponent,
     children: [
       {
         path: '',
@@ -29,7 +27,7 @@ const makerRoutes: Routes = [
       {
         path: '',
         component: HeaderComponent,
-        // canActivateChild: [AuthGuardService],
+        canActivateChild: [AuthGuardService],
         children: [
           { path: 'dashboard', component: DashboardComponent },
           { path: 'messages', component: MessagesComponent },

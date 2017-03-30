@@ -15,7 +15,7 @@ export class SocketService {
   ) { }
 
   connect(type: number, id: string): void {
-    this.socket = io.connect(this.http.getIp());
+    this.socket = io.connect(this.http.ip);
     // this.http.get('/api/offers/getAcceptedOffers')
     //   .then(response => {
     //     this.socket.emit('join', response);

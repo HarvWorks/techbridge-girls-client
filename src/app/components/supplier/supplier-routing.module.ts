@@ -8,14 +8,12 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { RegisterComponent } from './register/register.component';
-import { SupplierComponent } from './supplier.component';
 
 import { AuthGuardService } from '../../services/auth-guard.service';
 
 const supplierRoutes: Routes = [
   {
     path: '',
-    component: SupplierComponent,
     children: [
       {
         path: '',

@@ -4,12 +4,14 @@ import {
   CanLoad, Router, RouterStateSnapshot
 } from '@angular/router';
 
-import { tokenNotExpired } from 'angular2-jwt';
+import { JwtHelper } from 'angular2-jwt';
+import { Cookie } from 'ng2-cookies';
 
 import { SessionService } from './session.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild {
+  private jwtHelper: JwtHelper = new JwtHelper();
 
   constructor(
     private router: Router,
@@ -17,7 +19,12 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   ) { }
 
   canActivate(): boolean {
-    if (!tokenNotExpired()) {
+    const anvyl_token = Cookie.get('anvyl_token');
+console.log(anvyl_token);
+
+console.log('in canActivate', this.session.type)
+
+    if (anvyl_token && this.jwtHelper.isTokenExpired(anvyl_token)) {
       this.session.logout(false);
       return true;
     } else if (this.session.type === 0) {
@@ -31,8 +38,8 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const anvyl_token = Cookie.get('anvyl_token');
     const url: string = state.url;
-    console.log('url is:', url)
 
     if ((url.includes('login') || url.includes('register'))) {
       if (this.session.type === 0) {
@@ -43,7 +50,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
         return false;
       } else
         return true;
-    } else if (tokenNotExpired()) {
+    } else if (anvyl_token && !this.jwtHelper.isTokenExpired(anvyl_token)) {
       if (url.includes('maker') && this.session.type === 0)
         return true;
       else if (url.includes('supplier') && this.session.type === 1)
@@ -52,8 +59,13 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
         this.router.navigate(['']);
         return false;
       }
-    } else
+    } else if (anvyl_token && this.jwtHelper.isTokenExpired(anvyl_token)) {
       this.session.logout();
+      return false;
+    } else {
+      this.router.navigate(['']);
+      return false;
+    }
   }
 
 }

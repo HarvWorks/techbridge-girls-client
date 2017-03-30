@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.onSent.unsubscribe();
+    // this.onSent.unsubscribe();
   }
 
 }

@@ -10,7 +10,6 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { RegisterComponent } from './/register/register.component';
-import { SupplierComponent } from './supplier.component';
 
 import { SupplierRoutingModule } from './supplier-routing.module';
 
@@ -27,12 +26,7 @@ import { SupplierRoutingModule } from './supplier-routing.module';
     MessagesComponent,
     ProfileComponent,
     ProgressComponent,
-    RegisterComponent,
-    SupplierComponent
+    RegisterComponent
   ]
 })
-export class SupplierModule {
-  constructor(router: Router) {
-    console.log('supplier module')
-  }
-}
+export class SupplierModule { }

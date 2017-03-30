@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('app component')
     if (Cookie.get('anvyl_token'))
       this.session.setSession();
   }

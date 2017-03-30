@@ -10,7 +10,6 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { RegisterComponent } from './/register/register.component';
-import { MakerComponent } from './maker.component';
 
 import { MakerRoutingModule } from './maker-routing.module';
 
@@ -24,7 +23,6 @@ import { MakerRoutingModule } from './maker-routing.module';
     DashboardComponent,
     HeaderComponent,
     LoginComponent,
-    MakerComponent,
     MessagesComponent,
     ProfileComponent,
     ProgressComponent,
@@ -32,7 +30,5 @@ import { MakerRoutingModule } from './maker-routing.module';
   ]
 })
 export class MakerModule {
-  constructor(router: Router) {
-    console.log('maker module')
-  }
+  constructor(router: Router) {}
 }

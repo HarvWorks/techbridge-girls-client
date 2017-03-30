@@ -3,6 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Cookie } from 'ng2-cookies';
+import { JwtHelper } from 'angular2-jwt';
 
 import { SocketService } from './socket.service';
 
@@ -14,16 +15,15 @@ export class SessionService {
   private _contact: string;
   private _picture: string;
   private _created_at: string;
-  
+
+  private jwtHelper: JwtHelper = new JwtHelper();
   private onAccepted;
 
   constructor(
     private location: Location,
     private router: Router,
     private socket: SocketService
-  ) {
-    console.log('session constructed');
-  }
+  ) { }
 
   get id(): string { return this._id }
   get type(): number { return this._type }
@@ -53,11 +53,9 @@ export class SessionService {
   }
 
   setSession(): void {
-    console.log('setting session');
     try {
       // Parse paylod from token:
-      const payload = JSON.parse(window.atob(Cookie.get('anvyl_token').split('.')[1]
-        .replace('-', '+').replace('_', '/')));
+      const payload = this.jwtHelper.decodeToken(Cookie.get('anvyl_token'));
 
       // Set user information:
       this._id = payload.id;
@@ -72,9 +70,8 @@ export class SessionService {
       // Load google charts:
 
       //  Connect to sockets:
-      this.socket.connect(this.type, this.id);
+      this.socket.connect(this._type, this._id);
     } catch (error) {
-      console.log(error);
       this.logout();
     }
   }

@@ -30,14 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.suppliersService.login({})
+    this.suppliersService.login(this.supplier)
       .then(anvyl_token => {
+        console.log(anvyl_token)
         Cookie.set('anvyl_token', anvyl_token);
         this.session.setSession();
         this.router.navigate(['supplier/dashboard'])
       })
       .catch(error => {
-
+        console.log(error)
       })
   }
 
