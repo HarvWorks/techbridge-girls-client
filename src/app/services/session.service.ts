@@ -53,6 +53,7 @@ export class SessionService {
   }
 
   setSession(): void {
+    console.log('setting session');
     try {
       // Parse paylod from token:
       const payload = JSON.parse(window.atob(Cookie.get('anvyl_token').split('.')[1]
