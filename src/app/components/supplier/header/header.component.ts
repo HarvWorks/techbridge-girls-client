@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.onSent = this.socket.getOnSent().subscribe(data => {
+    // this.onSent = this.socket.getOnSent().subscribe(data => {
 
-    })
+    // })
   }
 
   ngOnDestroy() {

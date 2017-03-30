@@ -10,7 +10,7 @@ import { SocketService } from '../../../services/socket.service';
 })
 export class MessagesComponent implements OnInit, OnDestroy {
   private OnSent;
-  
+
   constructor(
     private router: Router,
     private session: SessionService,
@@ -18,17 +18,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    if (this.session.type !== 1)
-      this.router.navigate(['']);
-    else {
-      this.OnSent = this.socket.getOnSent().subscribe(() => {
-        
-      });
-    }
+    // this.OnSent = this.socket.getOnSent().subscribe(() => {
+
+    // });
   }
 
   ngOnDestroy() {
-    this.OnSent.unsubscribe();
+    // this.OnSent.unsubscribe();
   }
 
 }

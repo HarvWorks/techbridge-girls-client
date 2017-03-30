@@ -15,7 +15,5 @@ export class ProgressComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.session.type !== 1)
-      this.router.navigate(['']);
   }
 }

@@ -18,12 +18,8 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.session.type !== 1)
-      this.router.navigate(['']);
-    else {
-      this.makersService.show(this.session.id)
-        .then(user => this.user = user)
-        .catch(error => console.log(error));
-    }
+    this.makersService.show(this.session.id)
+      .then(user => this.user = user)
+      .catch(error => console.log(error));
   }
 }

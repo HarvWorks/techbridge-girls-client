@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Cookie } from 'ng2-cookies';
@@ -8,41 +8,48 @@ import { SocketService } from './socket.service';
 
 @Injectable()
 export class SessionService {
+  private _id: string;
+  private _type: number;
+  private _company: string;
+  private _contact: string;
+  private _picture: string;
+  private _created_at: string;
+  
   private onAccepted;
-
-  id: string;
-  type: number;
-  company: string;
-  contact: string;
-  picture: string;
-  created_at: string;
 
   constructor(
     private location: Location,
     private router: Router,
     private socket: SocketService
-  ) { 
+  ) {
     console.log('session constructed');
-    
   }
 
-  logout(): void {
+  get id(): string { return this._id }
+  get type(): number { return this._type }
+  get company(): string { return this._company }
+  get contact(): string { return this._contact }
+  get picture(): string { return this._picture }
+  get created_at(): string { return this._created_at }
+
+  logout(relocate = true): void {
     // Disconnect sockets:
     this.socket.disconnect();
 
     // Clear user information:
-    this.id = null;
-    this.type = null;
-    this.company = null;
-    this.contact = null;
-    this.picture = null;
-    this.created_at = null;
+    this._id = null;
+    this._type = null;
+    this._company = null;
+    this._contact = null;
+    this._picture = null;
+    this._created_at = null;
 
     // Clear cookies:
     Cookie.deleteAll();
 
     // Navigate to index:
-    this.router.navigate(['']);
+    if (relocate)
+      this.router.navigate(['']);
   }
 
   setSession(): void {
@@ -52,12 +59,12 @@ export class SessionService {
         .replace('-', '+').replace('_', '/')));
 
       // Set user information:
-      this.id = payload.id;
-      this.type = payload.type;
-      this.company = payload.company;
-      this.contact = payload.contact;
-      this.picture = payload.picture;
-      this.created_at = payload.created_at;
+      this._id = payload.id;
+      this._type = payload.type;
+      this._company = payload.company;
+      this._contact = payload.contact;
+      this._picture = payload.picture;
+      this._created_at = payload.created_at;
 
       // Set notifications:
 
