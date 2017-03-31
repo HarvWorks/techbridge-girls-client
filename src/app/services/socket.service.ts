@@ -42,6 +42,8 @@ export class SocketService {
   }
 
   disconnect(): void {
+    this._onSent = null;
+
     if (this.socket) {
       this.socket.emit('disconnect');
       this.socket.disconnect();
