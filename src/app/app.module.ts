@@ -12,10 +12,8 @@ import { AuthModule } from './modules/auth.module';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { HttpService } from './services/http.service';
-import { MakersService } from './services/makers.service';
 import { SessionService } from './services/session.service';
 import { SocketService } from './services/socket.service';
-import { SuppliersService } from './services/suppliers.service';
 
 @NgModule({
   imports: [
@@ -33,10 +31,8 @@ import { SuppliersService } from './services/suppliers.service';
   providers: [
     AuthGuardService,
     HttpService,
-    MakersService,
     SessionService,
     SocketService,
-    SuppliersService
   ],
   bootstrap: [AppComponent]
 })

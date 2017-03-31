@@ -14,8 +14,6 @@ export class DashboardComponent implements OnInit {
     private session: SessionService
   ) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
 }

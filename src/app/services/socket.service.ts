@@ -14,26 +14,24 @@ export class SocketService {
     private http: HttpService
   ) { }
 
-  get onSent(): Observable<any> {
-    return this._onSent;
-  }
+  get onSent(): Observable<any> { return this._onSent }
 
   connect(type: number, id: string): void {
     this.socket = io.connect(this.http.ip);
-    // this.http.get('/api/offers/getAcceptedOffers')
-    //   .then(response => {
-    //     this.socket.emit('join', response);
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   });
+    this.http.get('/api/offers/get-accepted-offers')
+      .then(response => {
+        this.socket.emit('join', response);
+      })
+      .catch(error => {
+        console.log(error)
+      });
 
     //////////////////////////////////////////////////////
     //               SOCKET EVENT HANDLERS
     //////////////////////////////////////////////////////
     this.socket.on('accepted', data => {
       if (type === 1 && id === data.supplier_id)
-        this.socket.emit('join', [data.proposal_id]);  
+        this.socket.emit('join', [data.proposal_id]);
     });
 
     this._onSent = new Observable(observer => {
@@ -47,7 +45,7 @@ export class SocketService {
     if (this.socket) {
       this.socket.emit('disconnect');
       this.socket.disconnect();
-      this.socket = undefined;
+      this.socket = null;
     }
   }
 

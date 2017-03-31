@@ -11,7 +11,7 @@ export class HttpService {
   private handleError(error: any): Promise<any> {
     try {
       return Promise.reject(error.json().message);
-    } catch (error) {
+    } catch (_) {
       return Promise.reject(error);
     }
   }

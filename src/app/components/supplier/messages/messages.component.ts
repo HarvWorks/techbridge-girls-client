@@ -18,13 +18,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // this.OnSent = this.socket.getOnSent().subscribe(() => {
-
-    // });
+    this.OnSent = this.socket.onSent.subscribe(() => {
+      // Do something with message events here:
+    });
   }
 
   ngOnDestroy() {
-    // this.OnSent.unsubscribe();
+    this.OnSent.unsubscribe();
   }
 
 }

@@ -14,6 +14,5 @@ export class ProgressComponent implements OnInit {
     private session: SessionService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }
