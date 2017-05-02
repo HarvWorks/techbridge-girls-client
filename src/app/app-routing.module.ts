@@ -18,6 +18,10 @@ const routes: Routes = [
 				loadChildren: './components/supplier/supplier.module#SupplierModule'
 			},
 			{
+				path: 'tech-bridge-girls',
+				loadChildren: './components/tech-bridge-girls/tech-bridge-girls.module#TechBridgeGirlsModule'
+			},
+			{
 				path: '',
 				component: IndexComponent,
 				canActivate: [AuthGuardService]
