@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AboutComponent } from './about/about.component';
 import { DonateComponent } from './donate/donate.component';
 import { IndexComponent } from './index/index.component';
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +20,7 @@ import { TechbridgeGirlsRoutingModule } from './techbridge-girls-routing.module'
     TechbridgeGirlsRoutingModule
   ],
   declarations: [
+    AboutComponent,
     DonateComponent,
     IndexComponent,
     RegisterComponent,
