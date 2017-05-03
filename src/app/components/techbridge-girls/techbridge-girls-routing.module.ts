@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterSignatureComponent } from './register-signature/register-signature.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
 import { VolunteerSignatureComponent } from './volunteer-signature/volunteer-signature.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'register-signature', component: RegisterSignatureComponent },
       { path: 'volunteer', component: VolunteerComponent },
       { path: 'volunteer-signature', component: VolunteerSignatureComponent },
+      { path: 'about', component: AboutComponent },
       { path: '', component: IndexComponent }
 
     ]
