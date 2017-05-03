@@ -13,6 +13,7 @@ export class SessionService {
   private _contact: string;
   private _created_at: string;
   private _id: string;
+  private _parent: any;
   private _picture: string;
   private _tier: number;
   private _type: number;
@@ -30,6 +31,7 @@ export class SessionService {
   get contact(): string { return this._contact }
   get created_at(): string { return this._created_at }
   get id(): string { return this._id }
+  get parent(): any { return this._parent }
   get picture(): string { return this._picture }
   get tier(): number { return this._tier }
   get type(): number { return this._type }
@@ -73,20 +75,23 @@ export class SessionService {
   }
 
   register(data): Promise<any> {
-    let user: string;
-    if (data.type === 0)
-      user = 'maker';
-    else if (data.type === 1)
-      user = 'supplier';
-    else
-      return Promise.reject('Invalid user type provided.');
+    this._parent = data;
+    return Promise.resolve();
 
-    return this.http.post(`/${user}s/register`, data)
-      .then(anvyl_token => {
-        Cookie.set('anvyl_token', anvyl_token);
-        this.setSession(Cookie.get('anvyl_token'));
-      })
-      .catch(error => Promise.reject(error))
+    // let user: string;
+    // if (data.type === 0)
+    //   user = 'maker';
+    // else if (data.type === 1)
+    //   user = 'supplier';
+    // else
+    //   return Promise.reject('Invalid user type provided.');
+
+    // return this.http.post(`/${user}s/register`, data)
+    //   .then(anvyl_token => {
+    //     Cookie.set('anvyl_token', anvyl_token);
+    //     this.setSession(Cookie.get('anvyl_token'));
+    //   })
+    //   .catch(error => Promise.reject(error))
   }
 
   setSession(anvyl_token: string): void {

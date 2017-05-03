@@ -5,7 +5,7 @@ import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class HttpService {
-  private _ip = 'http://10.0.0.44:8000';
+  private _ip = 'http://172.16.8.127:8000';
   private headers = new Headers({ 'Content-Type': 'application/json' });
 
   private handleError(error: any): Promise<any> {
