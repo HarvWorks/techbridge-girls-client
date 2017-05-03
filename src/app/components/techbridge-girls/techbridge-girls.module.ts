@@ -6,21 +6,25 @@ import { Router } from '@angular/router';
 import { DonateComponent } from './donate/donate.component';
 import { IndexComponent } from './index/index.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterSignatureComponent } from './register-signature/register-signature.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
+import { VolunteerSignatureComponent } from './volunteer-signature/volunteer-signature.component';
 
-import { TechBridgeGirlsRoutingModule } from './tech-bridge-girls-routing.module';
+import { TechbridgeGirlsRoutingModule } from './techbridge-girls-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    TechBridgeGirlsRoutingModule
+    TechbridgeGirlsRoutingModule
   ],
   declarations: [
     DonateComponent,
     IndexComponent,
     RegisterComponent,
-    VolunteerComponent
+    RegisterSignatureComponent,
+    VolunteerComponent,
+    VolunteerSignatureComponent
   ]
 })
-export class TechBridgeGirlsModule { }
+export class TechbridgeGirlsModule { }

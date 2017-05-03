@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DonateComponent } from './donate/donate.component';
 import { IndexComponent } from './index/index.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterSignatureComponent } from './register-signature/register-signature.component';
 import { VolunteerComponent } from './volunteer/volunteer.component';
+import { VolunteerSignatureComponent } from './volunteer-signature/volunteer-signature.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,9 @@ const routes: Routes = [
     children: [
       { path: 'donate', component: DonateComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'register-signature', component: RegisterSignatureComponent },
       { path: 'volunteer', component: VolunteerComponent },
+      { path: 'volunteer-signature', component: VolunteerSignatureComponent },
       { path: '', component: IndexComponent }
 
     ]
@@ -23,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TechBridgeGirlsRoutingModule { }
+export class TechbridgeGirlsRoutingModule { }

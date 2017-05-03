@@ -6,10 +6,10 @@ import { HttpService } from '../../../services/http.service';
 import { SessionService } from '../../../services/session.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html'
+  selector: 'app-volunteer-signature',
+  templateUrl: './volunteer-signature.component.html'
 })
-export class RegisterComponent implements OnInit {
+export class VolunteerSignatureComponent implements OnInit {
 
   parent = {};
 
@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get('/request-signature')
+    console.log('sending volunteer signature')
+    this.http.get('/volunteer-signature')
       .then(response => console.log(response))
       .catch(error => console.log(error));
   }
