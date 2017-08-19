@@ -14,6 +14,10 @@ const routes: Routes = [
 				loadChildren: './components/maker/maker.module#MakerModule'
 			},
 			{
+				path: 'monicall',
+				loadChildren: './components/monicall/monicall.module#MonicallModule'
+			},
+			{
 				path: 'supplier',
 				loadChildren: './components/supplier/supplier.module#SupplierModule'
 			},

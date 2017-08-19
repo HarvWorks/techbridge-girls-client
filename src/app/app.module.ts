@@ -24,7 +24,7 @@ import { SocketService } from './services/socket.service';
   ],
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
   ],
   providers: [
     AuthGuardService,
